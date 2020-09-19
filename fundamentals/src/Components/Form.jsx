@@ -3,6 +3,7 @@ import FormControl from "./Form-control";
 import ResultTable from "./result-table";
 export default class Form extends Component {
   state = {
+    disableEverything: false,
     isEdit: false,
     editIndex: undefined,
     clientDetails: {
@@ -25,6 +26,7 @@ export default class Form extends Component {
             LastName: "",
             Age: 18,
           },
+          disableEverything: false,
         },
         () => console.log(this.state)
       );
@@ -47,6 +49,7 @@ export default class Form extends Component {
           LastName: "",
           Age: 18,
         },
+        disableEverything: false,
         isEdit: false,
         editIndex: undefined,
       });
@@ -74,14 +77,17 @@ export default class Form extends Component {
         ...this.state.clientDetails,
         ...editData,
       },
+      disableEverything: true,
     });
   };
   handleDelete = (e) => {
     let data = this.state.FinalDetails.filter((t, index) => {
       return index !== +e.target.id;
     });
+
     this.setState({
       FinalDetails: [...data],
+      disableEverything: false,
     });
   };
   renderTable() {
@@ -92,6 +98,7 @@ export default class Form extends Component {
             Clients={this.state.FinalDetails}
             updateEntry={this.handleUpdate}
             deleteEntry={this.handleDelete}
+            disabled={this.state.disableEverything}
           />
         </>
       );

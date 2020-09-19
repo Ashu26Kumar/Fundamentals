@@ -1,6 +1,6 @@
 import React from "react";
 
-const ResultTable = ({ Clients, updateEntry, deleteEntry }) => {
+const ResultTable = ({ Clients, updateEntry, deleteEntry, disabled }) => {
   return (
     <div className="card card-intro">
       <div className="card-body">
@@ -27,6 +27,7 @@ const ResultTable = ({ Clients, updateEntry, deleteEntry }) => {
                   <td>
                     <span className="btn-group">
                       <button
+                        disabled={disabled}
                         className="btn btn-warning"
                         id={key}
                         onClick={updateEntry}
@@ -36,6 +37,7 @@ const ResultTable = ({ Clients, updateEntry, deleteEntry }) => {
 
                       <button
                         className="btn btn-danger"
+                        disabled={disabled}
                         id={key}
                         onClick={deleteEntry}
                       >
